@@ -86,7 +86,7 @@ export default function TermsPage() {
       <CTA
         title="Ready to bring a photo to life?"
         description="Download PicAlive free and turn a still photo into a living, shareable video in seconds."
-        secondary={{ label: "See pricing", href: "/pricing" }}
+        secondary={{ label: "Read the FAQ", href: "/faq" }}
       />
     </>
   );

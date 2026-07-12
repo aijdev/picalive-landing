@@ -52,6 +52,8 @@ export const metadata: Metadata = {
     statusBarStyle: "black-translucent",
   },
   formatDetection: { telephone: false },
+  // Safari Smart App Banner — a native App Store install prompt on iOS.
+  itunes: { appId: "6757533997" },
   openGraph: {
     type: "website",
     siteName: SITE_NAME,

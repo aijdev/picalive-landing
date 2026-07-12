@@ -189,7 +189,7 @@ export default function HomePage() {
               "Every clip is kept in your history to revisit",
             ]}
             shot={SHOTS.portrait}
-            cta={{ label: "See pricing & PRO", href: "/pricing" }}
+            cta={{ label: "Explore save & share", href: "/features/save-and-share" }}
           />
         </div>
       </Section>
@@ -237,7 +237,7 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* Pricing teaser */}
+      {/* Free-to-start teaser */}
       <Section>
         <div className="card relative overflow-hidden p-8 sm:p-12">
           <div className="brand-glow pointer-events-none absolute inset-0 opacity-60" />
@@ -254,8 +254,8 @@ export default function HomePage() {
               </p>
               <div className="flex flex-wrap gap-3">
                 <AppStoreButton size="md" />
-                <Button href="/pricing" variant="secondary">
-                  Compare plans
+                <Button href="/features" variant="secondary">
+                  Explore all features
                 </Button>
               </div>
             </div>

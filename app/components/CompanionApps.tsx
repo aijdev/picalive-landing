@@ -29,7 +29,7 @@ export function CompanionApps() {
       <p className="text-center text-sm text-muted">
         Part of{" "}
         <a
-          href={PORTFOLIO.url}
+          href={PORTFOLIO.pageUrl}
           target="_blank"
           rel="noopener"
           className="font-medium text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-foreground"

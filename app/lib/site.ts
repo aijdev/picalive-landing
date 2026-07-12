@@ -34,9 +34,9 @@ export const ORG = {
 
 /** Primary navigation shown in the header and footer. */
 export const NAV_LINKS = [
+  { label: "Features", href: "/features" },
   { label: "How It Works", href: "/how-it-works" },
   { label: "Examples", href: "/examples" },
-  { label: "Pricing", href: "/pricing" },
   { label: "FAQ", href: "/faq" },
   { label: "About", href: "/about" },
 ] as const;
@@ -49,9 +49,10 @@ export const FOOTER_NAV: {
     title: "Product",
     links: [
       { label: "Overview", href: "/" },
+      { label: "Features", href: "/features" },
       { label: "How It Works", href: "/how-it-works" },
       { label: "Examples", href: "/examples" },
-      { label: "Pricing", href: "/pricing" },
+      { label: "Animation Ideas", href: "/animation-ideas" },
     ],
   },
   {

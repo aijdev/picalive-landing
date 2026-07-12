@@ -1,0 +1,25 @@
+# PicAlive
+
+> PicAlive is a free iOS app (iPhone and iPad) that turns any still photo into a realistic, AI-generated moving video. Pick a photo, tap once, and faces smile, hair sways, and the moment comes alive — no prompts, editing skills, or account required. Free to try; PicAlive PRO unlocks unlimited, watermark-free videos with priority processing.
+
+PicAlive is part of the AI Photo Journey family of AI creativity apps (https://ai-photo-journey.com).
+
+## Key pages
+
+- [Home](https://picalive.app/): What PicAlive does and why people love it
+- [Features](https://picalive.app/features): Overview of everything the app can do
+- [Photo to Video AI](https://picalive.app/features/photo-to-video): Turn any picture into a moving video
+- [Animate Old Photos](https://picalive.app/features/animate-old-photos): Bring old family portraits back to life
+- [Save & Share](https://picalive.app/features/save-and-share): Export, history, and sharing
+- [How It Works](https://picalive.app/how-it-works): The one-tap flow, step by step
+- [Examples](https://picalive.app/examples): What people bring to life
+- [Animation Ideas](https://picalive.app/animation-ideas): Inspiration for what to animate first
+- [FAQ](https://picalive.app/faq): Common questions, PRO, privacy, and billing
+- [About](https://picalive.app/about): The team and the AI Photo Journey family
+
+## Facts
+
+- Platform: iOS (iPhone and iPad), download at https://apps.apple.com/us/app/image-to-video-picalive/id6757533997
+- No account or login required
+- Free tier with watermark; PRO removes watermark and limits
+- Sibling apps: FxAI (https://fxai.app), Photix (https://photix.app), Videx (https://videx.app), SwapTo (https://swapto.app)

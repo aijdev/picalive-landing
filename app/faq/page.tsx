@@ -12,7 +12,7 @@ import { JsonLd } from "../components/JsonLd";
 export const metadata: Metadata = buildMetadata({
   title: "Frequently Asked Questions",
   description:
-    "Answers to common questions about PicAlive — how photo-to-video animation works, how long it takes, PicAlive PRO pricing, privacy and safety, and getting started on iPhone and iPad.",
+    "Answers to common questions about PicAlive — how photo-to-video animation works, how long it takes, PicAlive PRO, privacy and safety, and getting started on iPhone and iPad.",
   path: "/faq",
   keywords: ["PicAlive FAQ", "photo to video app help", "PicAlive PRO questions"],
 });
@@ -29,7 +29,7 @@ export default function FaqPage() {
           { name: "Home", path: "/" },
           { name: "FAQ", path: "/faq" },
         ]}
-        intro="Everything you might want to know about PicAlive — from how the animation works to timing, pricing, privacy, and billing."
+        intro="Everything you might want to know about PicAlive — from how the animation works to timing, PicAlive PRO, privacy, and billing."
       />
 
       <Section>

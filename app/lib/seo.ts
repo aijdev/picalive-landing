@@ -4,7 +4,7 @@ import { SITE_NAME, SITE_URL, TWITTER_HANDLE } from "./site";
 type BuildMetadataInput = {
   title: string;
   description: string;
-  /** Path beginning with "/" (e.g. "/pricing"). Used for canonical + OG url. */
+  /** Path beginning with "/" (e.g. "/features"). Used for canonical + OG url. */
   path: string;
   keywords?: string[];
   /** When true, use `title` verbatim instead of the "%s · PicAlive" template. */

@@ -243,53 +243,66 @@ export const PROBLEMS_SOLVED: string[] = [
 ];
 
 /* -------------------------------------------------------------------------- */
-/*  Pricing — free tier vs PicAlive PRO                                       */
+/*  Feature pages (deep-dive marketing pages under /features)                 */
 /* -------------------------------------------------------------------------- */
 
-export type Plan = {
+export type Feature = {
+  slug: string;
+  href: string;
   name: string;
-  price: string;
-  cadence: string;
-  intro?: string;
+  /** Short label used in nav-like contexts and related-feature cards. */
+  short: string;
   blurb: string;
-  featured?: boolean;
+  keywords: string[];
 };
 
-export const PLANS: Plan[] = [
+export const FEATURES: Feature[] = [
   {
-    name: "PicAlive PRO Weekly",
-    price: "$4.99",
-    cadence: "per week",
-    intro: "First week just $2.99",
-    blurb: "Pay-as-you-go access to everything in PRO. Ideal for a burst of animating — a batch of old photos, a weekend project — with the freedom to stop anytime.",
+    slug: "photo-to-video",
+    href: "/features/photo-to-video",
+    name: "Photo to Video AI",
+    short: "Photo to Video",
+    blurb:
+      "Turn any still photo into a realistic, AI-generated moving video — one tap, no prompts, no editing.",
+    keywords: [
+      "photo to video AI",
+      "convert photo to video",
+      "image to video app",
+      "make photos move",
+    ],
   },
   {
-    name: "PicAlive PRO Quarterly",
-    price: "$29.99",
-    cadence: "per 3 months",
-    blurb: "The most popular plan and the best value — roughly a third of the weekly rate for three full months of unlimited, watermark-free, priority creation.",
-    featured: true,
+    slug: "animate-old-photos",
+    href: "/features/animate-old-photos",
+    name: "Animate Old Photos",
+    short: "Old Photos",
+    blurb:
+      "Bring old family portraits and faded black-and-white photos back to life with natural, believable motion.",
+    keywords: [
+      "animate old photos",
+      "bring old photos to life",
+      "old photo animation app",
+      "animate black and white photos",
+    ],
+  },
+  {
+    slug: "save-and-share",
+    href: "/features/save-and-share",
+    name: "Save & Share",
+    short: "Save & Share",
+    blurb:
+      "Every animation becomes a real video you can save to Photos, replay from History, and share anywhere.",
+    keywords: [
+      "save animated photo",
+      "share living photo",
+      "photo animation video export",
+    ],
   },
 ];
 
-export const PRO_BENEFITS: string[] = [
-  "Unlimited photo-to-video generations",
-  "Priority, faster processing in the queue",
-  "No watermark on saved or shared videos",
-  "No ads and no upsell interruptions",
-];
-
-/** Free vs PRO comparison rows. */
-export const PLAN_COMPARISON: { label: string; free: string; pro: string }[] = [
-  { label: "Make Alive generations", free: "Limited", pro: "Unlimited" },
-  { label: "Video quality", free: "Full HD", pro: "Full HD" },
-  { label: "Watermark on exports", free: "PicAlive watermark", pro: "None" },
-  { label: "Processing speed", free: "Standard queue", pro: "Priority queue" },
-  { label: "Ads", free: "Occasional", pro: "None" },
-  { label: "Save & share", free: "Yes", pro: "Yes" },
-  { label: "History library", free: "Yes", pro: "Yes" },
-  { label: "Account required", free: "No", pro: "No" },
-];
+export function getFeature(slug: string): Feature | undefined {
+  return FEATURES.find((f) => f.slug === slug);
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Companion apps (AI Journey ecosystem — PicAlive's siblings)               */
@@ -415,15 +428,11 @@ export const FAQS: { category: string; items: Faq[] }[] = [
     ],
   },
   {
-    category: "PicAlive PRO & pricing",
+    category: "PicAlive PRO",
     items: [
       {
         q: "What does PicAlive PRO include?",
-        a: "PRO gives you unlimited Make Alive generations, priority (faster) processing, no ads, and no watermark on the videos you save or share. It turns PicAlive into unlimited, uninterrupted, clean video creation.",
-      },
-      {
-        q: "How much does PicAlive PRO cost?",
-        a: "PicAlive PRO Weekly is $4.99 per week, with an introductory first week for $2.99. PicAlive PRO Quarterly is $29.99 for three months and is the most popular, best-value option. Prices are shown in the app and localized to your region by the App Store.",
+        a: "PRO gives you unlimited Make Alive generations, priority (faster) processing, no ads, and no watermark on the videos you save or share. It turns PicAlive into unlimited, uninterrupted, clean video creation. Current plans and options are always shown inside the app.",
       },
       {
         q: "Can I cancel anytime?",
