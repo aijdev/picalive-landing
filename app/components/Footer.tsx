@@ -3,6 +3,7 @@ import { Container } from "./Container";
 import { Logo } from "./Logo";
 import { AppStoreButton } from "./AppStoreButton";
 import { FOOTER_NAV, SITE_NAME, SITE_TAGLINE } from "../lib/site";
+import { COMPANION_APPS, PORTFOLIO } from "../lib/content";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -44,6 +45,38 @@ export function Footer() {
               </div>
             ))}
           </nav>
+        </div>
+
+        <div className="border-t border-border py-8">
+          <h2 className="text-sm font-semibold text-foreground">
+            More from AI Photo Journey
+          </h2>
+          <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2.5">
+            {COMPANION_APPS.map((app) => (
+              <li key={app.name}>
+                <a
+                  href={app.href}
+                  target="_blank"
+                  rel="noopener"
+                  className="text-sm text-muted transition-colors hover:text-foreground"
+                >
+                  {app.name}
+                  <span className="ml-1.5 text-muted/70">{app.what}</span>
+                </a>
+              </li>
+            ))}
+            <li>
+              <a
+                href={PORTFOLIO.url}
+                target="_blank"
+                rel="noopener"
+                className="text-sm text-muted transition-colors hover:text-foreground"
+              >
+                {PORTFOLIO.name}
+                <span className="ml-1.5 text-muted/70">Portfolio</span>
+              </a>
+            </li>
+          </ul>
         </div>
 
         <div className="flex flex-col items-center justify-between gap-4 border-t border-border py-6 text-sm text-muted sm:flex-row">

@@ -17,7 +17,20 @@ export function organizationSchema() {
     url: SITE_URL,
     logo: ORG.logo,
     description: SITE_DESCRIPTION,
-    sameAs: [APP_STORE_URL],
+    sameAs: [
+      APP_STORE_URL,
+      "https://fxai.app",
+      "https://photix.app",
+      "https://videx.app",
+      "https://swapto.app",
+      "https://picalive.app",
+      "https://ai-photo-journey.com",
+    ].filter((u) => u !== SITE_URL),
+    parentOrganization: {
+      "@type": "Organization",
+      name: "AI Photo Journey",
+      url: "https://ai-photo-journey.com",
+    },
   };
 }
 

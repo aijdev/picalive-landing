@@ -295,12 +295,24 @@ export const PLAN_COMPARISON: { label: string; free: string; pro: string }[] = [
 /*  Companion apps (AI Journey ecosystem — PicAlive's siblings)               */
 /* -------------------------------------------------------------------------- */
 
-export const COMPANION_APPS: { name: string; what: string; emoji: string }[] = [
-  { name: "Videx", what: "AI Video Generator", emoji: "🎬" },
-  { name: "Photix", what: "AI Image Generator", emoji: "🎨" },
-  { name: "FxAI", what: "AI Photo Enhancer", emoji: "✨" },
-  { name: "SwapTo", what: "AI Face Swap", emoji: "🔄" },
+export const COMPANION_APPS: {
+  name: string;
+  what: string;
+  emoji: string;
+  href: string;
+}[] = [
+  { name: "FxAI", what: "AI Photo Enhancer", emoji: "✨", href: "https://fxai.app" },
+  { name: "Photix", what: "AI Image Generator", emoji: "🎨", href: "https://photix.app" },
+  { name: "Videx", what: "AI Video Generator", emoji: "🎬", href: "https://videx.app" },
+  { name: "SwapTo", what: "AI Face Swap", emoji: "🔄", href: "https://swapto.app" },
 ];
+
+/** The AI Photo Journey company hub that links to every app in the family. */
+export const PORTFOLIO = {
+  name: "AI Photo Journey",
+  url: "https://ai-photo-journey.com",
+  pageUrl: "https://ai-photo-journey.com/apps/picalive",
+};
 
 /* -------------------------------------------------------------------------- */
 /*  Testimonials (illustrative, reflecting the app's stated 4.8 rating)       */
