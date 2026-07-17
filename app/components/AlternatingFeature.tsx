@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Shot } from "../lib/content";
+import { type Locale, defaultLocale, localizedPath } from "../i18n/config";
 import { Screenshot } from "./Screenshot";
 import { CheckList } from "./CheckList";
 import { ArrowRightIcon } from "./Icons";
@@ -14,6 +15,7 @@ export function AlternatingFeature({
   reversed = false,
   cta,
   priority = false,
+  locale = defaultLocale,
 }: {
   eyebrow: string;
   title: string;
@@ -23,6 +25,7 @@ export function AlternatingFeature({
   reversed?: boolean;
   cta?: { label: string; href: string };
   priority?: boolean;
+  locale?: Locale;
 }) {
   return (
     <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
@@ -37,7 +40,7 @@ export function AlternatingFeature({
         <CheckList items={bullets} className="mt-6" />
         {cta ? (
           <Link
-            href={cta.href}
+            href={localizedPath(cta.href, locale)}
             className="group mt-7 inline-flex items-center gap-1.5 text-sm font-semibold text-brand"
           >
             {cta.label}

@@ -1,10 +1,12 @@
-import { HOW_IT_WORKS } from "../lib/content";
+import { getContent } from "../lib/content";
+import { type Locale, defaultLocale } from "../i18n/config";
 
 /** Four-step "how it works" sequence shared by the home and features pages. */
-export function HowItWorks() {
+export function HowItWorks({ locale = defaultLocale }: { locale?: Locale }) {
+  const steps = getContent(locale).howItWorks;
   return (
     <ol className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      {HOW_IT_WORKS.map((step) => (
+      {steps.map((step) => (
         <li key={step.step} className="card flex flex-col gap-3 p-6">
           <span className="text-3xl font-bold tabular-nums text-gradient">
             {step.step}

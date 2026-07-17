@@ -6,6 +6,12 @@ import {
   SITE_URL,
 } from "./site";
 import type { Faq } from "./content";
+import {
+  type Locale,
+  defaultLocale,
+  hreflangMap,
+  localizedUrl,
+} from "../i18n/config";
 
 /** Organization schema for the AI Journey company behind PicAlive. */
 export function organizationSchema() {
@@ -35,13 +41,13 @@ export function organizationSchema() {
 }
 
 /** WebSite schema — helps Google understand the site name for sitelinks. */
-export function websiteSchema() {
+export function websiteSchema(locale: Locale = defaultLocale) {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: SITE_NAME,
-    url: SITE_URL,
-    inLanguage: "en",
+    url: localizedUrl("/", locale),
+    inLanguage: hreflangMap[locale],
   };
 }
 
@@ -54,7 +60,9 @@ export function softwareAppSchema(overrides?: {
   name?: string;
   description?: string;
   url?: string;
+  locale?: Locale;
 }) {
+  const locale = overrides?.locale ?? defaultLocale;
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -63,13 +71,14 @@ export function softwareAppSchema(overrides?: {
     applicationCategory: "MultimediaApplication",
     applicationSubCategory: "Photo & Video",
     description: overrides?.description ?? SITE_DESCRIPTION,
+    inLanguage: hreflangMap[locale],
     image: ORG.logo,
     screenshot: [
       `${SITE_URL}/screenshot_0.jpg`,
       `${SITE_URL}/screenshot_2.jpg`,
       `${SITE_URL}/screenshot_3.jpg`,
     ],
-    url: overrides?.url ?? SITE_URL,
+    url: overrides?.url ?? localizedUrl("/", locale),
     installUrl: APP_STORE_URL,
     downloadUrl: APP_STORE_URL,
     offers: {
@@ -100,8 +109,11 @@ export function faqSchema(faqs: Faq[]) {
   };
 }
 
-/** BreadcrumbList schema from an ordered list of crumbs. */
-export function breadcrumbSchema(crumbs: { name: string; path: string }[]) {
+/** BreadcrumbList schema from an ordered list of crumbs (localized item URLs). */
+export function breadcrumbSchema(
+  crumbs: { name: string; path: string }[],
+  locale: Locale = defaultLocale,
+) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -109,7 +121,7 @@ export function breadcrumbSchema(crumbs: { name: string; path: string }[]) {
       "@type": "ListItem",
       position: i + 1,
       name: c.name,
-      item: `${SITE_URL}${c.path === "/" ? "" : c.path}`,
+      item: localizedUrl(c.path, locale),
     })),
   };
 }

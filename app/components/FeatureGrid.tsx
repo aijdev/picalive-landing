@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import { CAPABILITIES } from "../lib/content";
+import { getContent } from "../lib/content";
+import { type Locale, defaultLocale } from "../i18n/config";
 import {
   PlayIcon,
   SparklesIcon,
@@ -19,10 +20,11 @@ const ICONS: Record<string, ReactNode> = {
 };
 
 /** Grid of the app's core capabilities. Used on the home + how-it-works pages. */
-export function FeatureGrid() {
+export function FeatureGrid({ locale = defaultLocale }: { locale?: Locale }) {
+  const capabilities = getContent(locale).capabilities;
   return (
     <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {CAPABILITIES.map((capability) => (
+      {capabilities.map((capability) => (
         <div
           key={capability.title}
           className="card card-hover flex flex-col gap-4 p-6"

@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
-import { Header } from "./components/Header";
-import { Footer } from "./components/Footer";
 import { JsonLd } from "./components/JsonLd";
 import { organizationSchema, websiteSchema } from "./lib/schema";
 import {
@@ -88,6 +86,12 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+/**
+ * Minimal root layout: static export renders a single physical <html lang="en">
+ * tree. Localized routes under /[lang] render their own header/footer chrome
+ * via AppShell and set <html lang> client-side via LangSetter — see
+ * app/[lang]/layout.tsx and components/LangSetter.tsx.
+ */
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -95,17 +99,7 @@ export default function RootLayout({
     <html lang="en" className={`${geistSans.variable} h-full`}>
       <body className="flex min-h-full flex-col antialiased">
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-foreground focus:px-4 focus:py-2 focus:text-background"
-        >
-          Skip to content
-        </a>
-        <Header />
-        <main id="main" className="flex-1">
-          {children}
-        </main>
-        <Footer />
+        {children}
       </body>
     </html>
   );

@@ -1,18 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SITE_NAME } from "../lib/site";
+import { type Locale, defaultLocale, localizedPath } from "../i18n/config";
 
 export function Logo({
   className = "",
   withWordmark = true,
+  locale = defaultLocale,
+  homeAria,
 }: {
   className?: string;
   withWordmark?: boolean;
+  locale?: Locale;
+  /** Resolved "{name} home" label, passed in so this stays dictionary-free
+   *  (it is rendered inside the client Header). */
+  homeAria?: string;
 }) {
   return (
     <Link
-      href="/"
-      aria-label={`${SITE_NAME} home`}
+      href={localizedPath("/", locale)}
+      aria-label={homeAria ?? SITE_NAME}
       className={`inline-flex items-center gap-2.5 ${className}`}
     >
       <Image

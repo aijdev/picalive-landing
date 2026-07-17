@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Container } from "./Container";
 import { Breadcrumbs, type Crumb } from "./Breadcrumbs";
+import { type Locale, defaultLocale } from "../i18n/config";
 
 /** Standard interior-page hero: breadcrumbs, eyebrow, H1, intro, and actions. */
 export function PageHeader({
@@ -9,18 +10,20 @@ export function PageHeader({
   intro,
   crumbs,
   actions,
+  locale = defaultLocale,
 }: {
   eyebrow?: string;
   title: string;
   intro?: ReactNode;
   crumbs: Crumb[];
   actions?: ReactNode;
+  locale?: Locale;
 }) {
   return (
     <div className="relative overflow-hidden border-b border-border">
       <div className="brand-glow pointer-events-none absolute inset-0 opacity-60" />
       <Container className="relative py-12 sm:py-16">
-        <Breadcrumbs crumbs={crumbs} />
+        <Breadcrumbs crumbs={crumbs} locale={locale} />
         <div className="mt-6 flex max-w-3xl flex-col gap-5">
           {eyebrow ? <span className="eyebrow">{eyebrow}</span> : null}
           <h1 className="text-4xl font-semibold leading-[1.05] tracking-tight sm:text-[3.25rem]">

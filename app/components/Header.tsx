@@ -3,13 +3,33 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { NAV_LINKS } from "../lib/site";
+import { type Locale, localizedPath } from "../i18n/config";
 import { Container } from "./Container";
 import { Logo } from "./Logo";
-import { AppStoreButton } from "./AppStoreButton";
-import { CloseIcon, MenuIcon } from "./Icons";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { AppleIcon, CloseIcon, MenuIcon } from "./Icons";
 
-export function Header() {
+type NavItem = { label: string; href: string };
+
+/**
+ * Site header. Rendered by the server layout, which passes already-resolved,
+ * localized strings so no translation dictionary reaches the client bundle.
+ */
+export function Header({
+  locale,
+  navItems,
+  appStore,
+  homeAria,
+  menuLabels,
+  switcherLabel,
+}: {
+  locale: Locale;
+  navItems: NavItem[];
+  appStore: { href: string; ariaLabel: string; name: string };
+  homeAria: string;
+  menuLabels: { open: string; close: string };
+  switcherLabel: string;
+}) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -26,18 +46,19 @@ export function Header() {
     };
   }, [open]);
 
+  const home = localizedPath("/", locale);
   function isActive(href: string) {
-    return href === "/" ? pathname === "/" : pathname.startsWith(href);
+    return href === home ? pathname === home : pathname.startsWith(href);
   }
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
       <Container>
         <div className="flex h-16 items-center justify-between gap-4">
-          <Logo />
+          <Logo locale={locale} homeAria={homeAria} />
 
           <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
-            {NAV_LINKS.map((link) => (
+            {navItems.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -54,16 +75,23 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <div className="sm:hidden">
-              <AppStoreButton size="sm" />
-            </div>
             <div className="hidden sm:block">
-              <AppStoreButton size="md" />
+              <LanguageSwitcher locale={locale} label={switcherLabel} />
             </div>
+            <a
+              href={appStore.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={appStore.ariaLabel}
+              className="inline-flex h-10 items-center gap-2 rounded-full bg-foreground px-4 text-sm font-semibold tracking-tight text-background shadow-soft transition-all duration-200 hover:shadow-lift"
+            >
+              <AppleIcon className="h-4 w-4" />
+              {appStore.name}
+            </a>
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
-              aria-label={open ? "Close menu" : "Open menu"}
+              aria-label={open ? menuLabels.close : menuLabels.open}
               aria-expanded={open}
               className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-surface md:hidden"
             >
@@ -81,7 +109,7 @@ export function Header() {
         <div className="border-t border-border bg-background md:hidden">
           <Container>
             <nav aria-label="Mobile" className="flex flex-col gap-1 py-4">
-              {NAV_LINKS.map((link) => (
+              {navItems.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
@@ -97,7 +125,7 @@ export function Header() {
                 </Link>
               ))}
               <div className="px-3 pt-3">
-                <AppStoreButton size="md" className="w-full justify-center" />
+                <LanguageSwitcher locale={locale} label={switcherLabel} />
               </div>
             </nav>
           </Container>

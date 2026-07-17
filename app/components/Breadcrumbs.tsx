@@ -1,14 +1,21 @@
 import Link from "next/link";
 import { JsonLd } from "./JsonLd";
 import { breadcrumbSchema } from "../lib/schema";
+import { type Locale, defaultLocale, localizedPath } from "../i18n/config";
 
 export type Crumb = { name: string; path: string };
 
 /** Visual breadcrumb trail plus matching BreadcrumbList structured data. */
-export function Breadcrumbs({ crumbs }: { crumbs: Crumb[] }) {
+export function Breadcrumbs({
+  crumbs,
+  locale = defaultLocale,
+}: {
+  crumbs: Crumb[];
+  locale?: Locale;
+}) {
   return (
     <>
-      <JsonLd data={breadcrumbSchema(crumbs)} />
+      <JsonLd data={breadcrumbSchema(crumbs, locale)} />
       <nav aria-label="Breadcrumb" className="text-sm">
         <ol className="flex flex-wrap items-center gap-1.5 text-muted">
           {crumbs.map((crumb, i) => {
@@ -22,7 +29,7 @@ export function Breadcrumbs({ crumbs }: { crumbs: Crumb[] }) {
                 ) : (
                   <>
                     <Link
-                      href={crumb.path}
+                      href={localizedPath(crumb.path, locale)}
                       className="transition-colors hover:text-foreground"
                     >
                       {crumb.name}

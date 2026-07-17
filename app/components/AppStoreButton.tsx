@@ -1,4 +1,6 @@
-import { APP_STORE_URL } from "../lib/site";
+import { APP_STORE_URL, SITE_NAME } from "../lib/site";
+import { type Locale, defaultLocale } from "../i18n/config";
+import { getDictionary } from "../i18n/getDictionary";
 import { AppleIcon } from "./Icons";
 
 /**
@@ -8,10 +10,15 @@ import { AppleIcon } from "./Icons";
 export function AppStoreButton({
   className = "",
   size = "lg",
+  locale = defaultLocale,
 }: {
   className?: string;
   size?: "sm" | "md" | "lg";
+  locale?: Locale;
 }) {
+  const t = getDictionary(locale).common;
+  const ariaLabel = t.appStoreAria.replace("{name}", SITE_NAME);
+
   // "sm" is a compact single-line pill for tight spots like the mobile header.
   if (size === "sm") {
     return (
@@ -19,11 +26,11 @@ export function AppStoreButton({
         href={APP_STORE_URL}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Download PicAlive on the App Store"
+        aria-label={ariaLabel}
         className={`inline-flex h-10 items-center gap-2 rounded-full bg-foreground px-4 text-sm font-semibold tracking-tight text-background shadow-soft transition-all duration-200 hover:shadow-lift focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring ${className}`}
       >
         <AppleIcon className="h-4 w-4" />
-        App Store
+        {t.appStoreName}
       </a>
     );
   }
@@ -38,13 +45,13 @@ export function AppStoreButton({
       href={APP_STORE_URL}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Download PicAlive on the App Store"
+      aria-label={ariaLabel}
       className={`group inline-flex items-center gap-3 rounded-2xl bg-foreground ${pad} text-background shadow-soft transition-all duration-200 hover:shadow-lift focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring ${className}`}
     >
       <AppleIcon className={iconSize} />
       <span className="flex flex-col items-start leading-none">
-        <span className={`${small} font-medium opacity-80`}>Download on the</span>
-        <span className={`${big} font-semibold tracking-tight`}>App Store</span>
+        <span className={`${small} font-medium opacity-80`}>{t.appStoreDownloadOn}</span>
+        <span className={`${big} font-semibold tracking-tight`}>{t.appStoreName}</span>
       </span>
     </a>
   );

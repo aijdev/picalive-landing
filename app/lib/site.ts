@@ -32,42 +32,5 @@ export const ORG = {
   logo: `${SITE_URL}/logo.jpg`,
 };
 
-/** Primary navigation shown in the header and footer. */
-export const NAV_LINKS = [
-  { label: "Features", href: "/features" },
-  { label: "How It Works", href: "/how-it-works" },
-  { label: "Examples", href: "/examples" },
-  { label: "FAQ", href: "/faq" },
-  { label: "About", href: "/about" },
-] as const;
-
-export const FOOTER_NAV: {
-  title: string;
-  links: { label: string; href: string }[];
-}[] = [
-  {
-    title: "Product",
-    links: [
-      { label: "Overview", href: "/" },
-      { label: "Features", href: "/features" },
-      { label: "How It Works", href: "/how-it-works" },
-      { label: "Examples", href: "/examples" },
-      { label: "Animation Ideas", href: "/animation-ideas" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { label: "About", href: "/about" },
-      { label: "FAQ", href: "/faq" },
-      { label: "Contact", href: "/contact" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Terms of Use", href: "/terms" },
-    ],
-  },
-];
+// Nav and footer link labels now live in the i18n dictionaries
+// (see app/i18n/dictionaries/*.ts, common.nav / common.footer).

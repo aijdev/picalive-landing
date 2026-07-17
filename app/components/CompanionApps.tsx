@@ -1,4 +1,6 @@
-import { COMPANION_APPS, PORTFOLIO } from "../lib/content";
+import { getContent, PORTFOLIO } from "../lib/content";
+import { type Locale, defaultLocale } from "../i18n/config";
+import { getDictionary } from "../i18n/getDictionary";
 
 /**
  * Cross-promotion strip for the wider AI Photo Journey app family. Every card
@@ -6,11 +8,13 @@ import { COMPANION_APPS, PORTFOLIO } from "../lib/content";
  * links back to the company hub — building a dense, reciprocal cross-link graph
  * across the family for SEO.
  */
-export function CompanionApps() {
+export function CompanionApps({ locale = defaultLocale }: { locale?: Locale }) {
+  const companionApps = getContent(locale).companionApps;
+  const t = getDictionary(locale).common.companion;
   return (
     <div className="flex flex-col gap-6">
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        {COMPANION_APPS.map((app) => (
+        {companionApps.map((app) => (
           <a
             key={app.name}
             href={app.href}
@@ -27,7 +31,7 @@ export function CompanionApps() {
         ))}
       </div>
       <p className="text-center text-sm text-muted">
-        Part of{" "}
+        {t.partOfPre}{" "}
         <a
           href={PORTFOLIO.pageUrl}
           target="_blank"
@@ -36,7 +40,7 @@ export function CompanionApps() {
         >
           {PORTFOLIO.name}
         </a>{" "}
-        — a family of AI creativity apps for iPhone and iPad.
+        {t.partOfPost}
       </p>
     </div>
   );

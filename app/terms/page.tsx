@@ -2,15 +2,19 @@ import type { Metadata } from "next";
 import { buildMetadata } from "../lib/seo";
 import { SITE_NAME, SUPPORT_EMAIL } from "../lib/site";
 
+import { AppShell } from "../components/AppShell";
 import { PageHeader } from "../components/PageHeader";
 import { Section } from "../components/Section";
 import { CTA } from "../components/CTA";
 
+// Legal pages are English-only: no localized copies, no hreflang alternates.
 export const metadata: Metadata = buildMetadata({
   title: "Terms of Use",
   description:
     "A plain-language summary of the PicAlive Terms of Use — using the app, subscriptions and billing through Apple, acceptable use and content safety, and ownership of the videos you create.",
   path: "/terms",
+  locale: "en",
+  alternates: false,
   keywords: ["PicAlive terms of use", "PicAlive terms", "photo animation app terms"],
 });
 
@@ -47,7 +51,7 @@ const SECTIONS: { title: string; body: string }[] = [
 
 export default function TermsPage() {
   return (
-    <>
+    <AppShell locale="en">
       <PageHeader
         eyebrow="Legal"
         title="Terms of Use"
@@ -88,6 +92,6 @@ export default function TermsPage() {
         description="Download PicAlive free and turn a still photo into a living, shareable video in seconds."
         secondary={{ label: "Read the FAQ", href: "/faq" }}
       />
-    </>
+    </AppShell>
   );
 }

@@ -1,7 +1,16 @@
 import type { UseCase } from "../lib/content";
+import { type Locale, defaultLocale } from "../i18n/config";
+import { getDictionary } from "../i18n/getDictionary";
 
 /** Full use-case card: audience, problem, solution, and a concrete example. */
-export function UseCaseCard({ useCase }: { useCase: UseCase }) {
+export function UseCaseCard({
+  useCase,
+  locale = defaultLocale,
+}: {
+  useCase: UseCase;
+  locale?: Locale;
+}) {
+  const t = getDictionary(locale).common;
   return (
     <article className="card card-hover flex flex-col gap-4 p-6 sm:p-7">
       <div className="flex items-center gap-3">
@@ -20,11 +29,11 @@ export function UseCaseCard({ useCase }: { useCase: UseCase }) {
 
       <div className="flex flex-col gap-3 text-sm leading-relaxed">
         <p className="text-muted">
-          <span className="font-semibold text-foreground">The problem — </span>
+          <span className="font-semibold text-foreground">{t.useCaseProblemLabel}</span>
           {useCase.problem}
         </p>
         <p className="text-muted">
-          <span className="font-semibold text-foreground">With PicAlive — </span>
+          <span className="font-semibold text-foreground">{t.useCaseSolutionLabel}</span>
           {useCase.solution}
         </p>
       </div>

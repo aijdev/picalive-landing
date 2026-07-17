@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { buildMetadata } from "../lib/seo";
 import { SUPPORT_EMAIL } from "../lib/site";
 
+import { AppShell } from "../components/AppShell";
 import { PageHeader } from "../components/PageHeader";
 import { Section } from "../components/Section";
 import { CTA } from "../components/CTA";
@@ -12,11 +13,14 @@ import {
   SparklesIcon,
 } from "../components/Icons";
 
+// Legal pages are English-only: no localized copies, no hreflang alternates.
 export const metadata: Metadata = buildMetadata({
   title: "Privacy — How PicAlive Handles Your Data",
   description:
     "An overview of privacy in PicAlive: no accounts or logins, an anonymous device identity, explicit tracking consent, a content-safety filter, and clear handling of the photos you animate.",
   path: "/privacy",
+  locale: "en",
+  alternates: false,
   keywords: ["PicAlive privacy", "photo animation privacy", "app tracking transparency"],
 });
 
@@ -45,7 +49,7 @@ const PRINCIPLES = [
 
 export default function PrivacyPage() {
   return (
-    <>
+    <AppShell locale="en">
       <PageHeader
         eyebrow="Privacy"
         title="Privacy at PicAlive"
@@ -132,6 +136,6 @@ export default function PrivacyPage() {
         description="Download PicAlive and start animating — no account, no profile, no fuss."
         secondary={{ label: "Read the FAQ", href: "/faq" }}
       />
-    </>
+    </AppShell>
   );
 }
